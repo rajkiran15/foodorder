@@ -1,17 +1,31 @@
-import React from 'react';
+import React,{ useState } from 'react'
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import css from './mystyle.css';
+import NavBar from './components/nav';
+import ContactUs from './components/contactus';
+import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom';
+import Home from './components/home';
+import About from './components/about';
+import Location from './components/Location';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class App extends React.Component{
+    render(){
+        return(
+          <Router>
+              <div className="App">
+                  <NavBar/>
+                  <Switch>
+                      <Route exact path="/" component={Home} />
+                      <Route exact path="/contact" component={ContactUs}/>
+                      <Route exact path="/about" component={About}/>
+                      <Route exact path="/location" component={Location}/>
+                  </Switch>
+              </div>
+          </Router>
+        )
+    }
+}
+ReactDOM.render(<App/>,document.getElementById("root"));
+
+ 
